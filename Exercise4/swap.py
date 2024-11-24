@@ -59,13 +59,13 @@ import bob
 # TODO: Fill in all of these fields
 #
 
-alice_txid_to_spend     = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" 
-alice_utxo_index        = None
-alice_amount_to_send    = None
+alice_txid_to_spend     = "0426910d3304d20aa124dc91706ad4ca7ec2dae820c59cd4226d0323bef716fc" 
+alice_utxo_index        = 0
+alice_amount_to_send    = 0.0001
 
-bob_txid_to_spend       = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+bob_txid_to_spend       = "c76fd5dbcee757781cd8c8993b38a8e487ef43d77e360897c68aff18fdb237ee"
 bob_utxo_index          = 0
-bob_amount_to_send      = 0.01
+bob_amount_to_send      = 0.0001
 
 # Get current block height (for locktime) in 'height' parameter for each blockchain (and put it into swap.py):
 #  curl https://api.blockcypher.com/v1/btc/test3
@@ -81,8 +81,8 @@ bob_locktime = 3
 
 tx_fee = 0.001
 
-broadcast_transactions = False
-alice_redeems = False
+broadcast_transactions = True
+alice_redeems = True
 
 #
 #

@@ -17,20 +17,39 @@ from bitcoin.core.script import *
 # This is the ScriptPubKey for the swap transaction
 def coinExchangeScript(public_key_sender, public_key_recipient, hash_of_secret):
     return [
-        # fill this in!
+        # 需要接收者的签名来兑现
+        public_key_recipient,
+        OP_CHECKSIGVERIFY,
+        # 检查发送者签名
+        OP_IF,
+        public_key_sender,
+        OP_CHECKSIG,
+        # 检查 hash_of_secret
+        OP_ELSE,
+        OP_HASH160,  # 用 HASH160 验证
+        hash_of_secret,
+        OP_EQUAL,
+        OP_ENDIF
     ]
+
 
 # This is the ScriptSig that the receiver will use to redeem coins
 def coinExchangeScriptSig1(sig_recipient, secret):
     return [
-        # fill this in!
+        secret,  # 提供秘密 x（哈希锁定条件）
+        OP_0,  # 选择 ScriptPubKey 中的 `OP_IF` 分支
+        sig_recipient  # 接收者的签名
     ]
+
 
 # This is the ScriptSig for sending coins back to the sender if unredeemed
 def coinExchangeScriptSig2(sig_sender, sig_recipient):
     return [
-        # fill this in!
+        sig_sender,  # 发送者的签名
+        OP_1,  # 选择 ScriptPubKey 中的 `OP_ELSE` 分支
+        sig_recipient  # 接收者的签名
     ]
+
 
 #
 #
